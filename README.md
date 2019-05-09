@@ -17,17 +17,29 @@ https://www.terraform.io/intro/index.html
   - A **resource** might be a physical component such as an EC2 instance, or it can be a logical resource such as a Heroku application. It defines a type: the prefix of the type maps to the provider, e.g. `aws_instance`
   - The first command to run for a new configuration -- or after checking out an existing configuration from version control -- is `terraform init`, which initializes various local settings and data that will be used by subsequent commands.
 - Terraform 0.11 and above doesn't require to execute first `terraform plan`
-- After applying, Terraform also writes some data into the terraform.tfstate file. **This state file is extremely important**; it keeps track of the IDs of created resources so that Terraform knows what it is managing. **This file must be saved and distributed** to anyone who might run Terraform. It is generally recommended to setup remote state when working with Terraform, to share the state automatically
+- After applying, Terraform also writes some data into the terraform.tfstate file. **This state file is extremely important**; it keeps track of the IDs of created resources so that Terraform knows what it is managing. **This file must be saved and distributed** to anyone who might run Terraform. It is generally recommended to setup remote state when working with Terraform, to share the state automatically.
+- By default, Terraform stores state locally in a file named terraform.tfstate. When working with Terraform in a team, use of a local file makes Terraform usage complicated because each user must make sure they always have the latest state data before running Terraform and make sure that nobody else runs Terraform at the same time.
+- With **remote state**, Terraform writes the state data to a remote data store, which can then be shared between all members of a team. Terraform supports storing state in **Terraform Enterprise**, HashiCorp Consul, Amazon S3, and more.
 - The EC2 instance we launched at this point is based on the AMI given, but has no additional software installed. If you're running an image-based infrastructure (perhaps creating images with Packer), then this is all you need.
+- A **"backend"** in Terraform determines how state is loaded and how an operation such as apply is executed. This abstraction enables non-local file state storage, remote execution, etc. By default, Terraform uses the **"local" backend**, which is the normal behavior of Terraform you're used to. 
+- While remote state is a convenient, built-in mechanism for sharing data between configurations, it is also possible to use more general stores to pass settings both to other configurations and to other consumers. For example, if your environment has **HashiCorp Consul** then you can have one Terraform configuration that writes to Consul using consul_key_prefix and then another that consumes those values using the consul_keys data source.
+  - https://www.terraform.io/docs/providers/consul/r/key_prefix.html
+- For fully-featured remote backends, Terraform can also use **state locking** to prevent concurrent runs of Terraform against the same state. State locking happens automatically on all operations that could write state.
+- The prefix `-/+` means that Terraform will destroy and recreate the resource, rather than updating it in-place. While some attributes can be updated in-place (which are shown with the `~` prefix)
 
 
 ## AWS Provider
 * https://www.terraform.io/docs/providers/aws/index.html
 
 
+## Terraform Enterprise
+* It offers **remote state**.
+* It supports an even stronger locking concept that can also detect attempts to create a new plan when an existing plan is already awaiting approval, by queuing Terraform operations in a central location. This allows teams to more easily coordinate and communicate about changes to infrastructure.
+
 ## Commands
 * `terraform init`
 * `terraform plan`
 * `terraform apply`
 * `terraform show`
+* `terraform destroy`
 * ``
