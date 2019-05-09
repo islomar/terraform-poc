@@ -18,6 +18,7 @@ https://www.terraform.io/intro/index.html
   - The first command to run for a new configuration -- or after checking out an existing configuration from version control -- is `terraform init`, which initializes various local settings and data that will be used by subsequent commands.
 - Terraform 0.11 and above doesn't require to execute first `terraform plan`
 - After applying, Terraform also writes some data into the terraform.tfstate file. **This state file is extremely important**; it keeps track of the IDs of created resources so that Terraform knows what it is managing. **This file must be saved and distributed** to anyone who might run Terraform. It is generally recommended to setup remote state when working with Terraform, to share the state automatically
+- The EC2 instance we launched at this point is based on the AMI given, but has no additional software installed. If you're running an image-based infrastructure (perhaps creating images with Packer), then this is all you need.
 
 
 ## AWS Provider
