@@ -36,6 +36,15 @@ https://www.terraform.io/intro/index.html
 * It offers **remote state**.
 * It supports an even stronger locking concept that can also detect attempts to create a new plan when an existing plan is already awaiting approval, by queuing Terraform operations in a central location. This allows teams to more easily coordinate and communicate about changes to infrastructure.
 
+
+## AWS services
+### Elastic IP
+* An Elastic IP address is a static IPv4 address designed for dynamic cloud computing. An Elastic 
+IP address is associated with your AWS account. With an Elastic IP address, you can mask the failure of an instance or software by rapidly remapping the address to another instance in your account.
+* An Elastic IP address is a public IPv4 address, which is reachable from the internet. If your instance does not have a public IPv4 address, you can associate an Elastic IP address with your instance to enable communication with the internet; for example, to connect to your instance from your local computer.
+* We currently do not support Elastic IP addresses for IPv6.
+
+
 ## Commands
 * `terraform init`
 * `terraform plan`
