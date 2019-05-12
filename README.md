@@ -33,6 +33,8 @@ automatically infer when one resource depends on another.
 * Terraform uses this dependency information to determine the correct order in which to create the
  different resources.
 * Sometimes there are dependencies between resources that are not visible to Terraform. The `depends_on` argument is accepted by any resource and accepts a list of resources to create explicit dependencies for.
+* Where possible, Terraform will perform operations concurrently to reduce the total time taken to apply changes.
+
 
 ## AWS Provider
 * https://www.terraform.io/docs/providers/aws/index.html
