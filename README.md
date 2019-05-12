@@ -27,6 +27,12 @@ https://www.terraform.io/intro/index.html
 - For fully-featured remote backends, Terraform can also use **state locking** to prevent concurrent runs of Terraform against the same state. State locking happens automatically on all operations that could write state.
 - The prefix `-/+` means that Terraform will destroy and recreate the resource, rather than updating it in-place. While some attributes can be updated in-place (which are shown with the `~` prefix)
 
+## Resources
+* By studying the resource attributes used in interpolation expressions, Terraform can 
+automatically infer when one resource depends on another. 
+* Terraform uses this dependency information to determine the correct order in which to create the
+ different resources.
+* Sometimes there are dependencies between resources that are not visible to Terraform. The `depends_on` argument is accepted by any resource and accepts a list of resources to create explicit dependencies for.
 
 ## AWS Provider
 * https://www.terraform.io/docs/providers/aws/index.html
