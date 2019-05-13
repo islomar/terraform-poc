@@ -30,6 +30,9 @@ https://www.terraform.io/intro/index.html
   - https://learn.hashicorp.com/terraform/getting-started/variables
   - For all files which match terraform.tfvars or *.auto.tfvars present in the current directory, Terraform automatically loads them to populate variables. 
   - Terraform will read environment variables in the form of `TF_VAR_name` to find the value for a variable. 
+- **Outputs** are a way to tell Terraform what data is important. This data is outputted when apply 
+is called, and can be queried using the terraform output command.
+
 
 ## Resources
 * By studying the resource attributes used in interpolation expressions, Terraform can 
@@ -72,4 +75,4 @@ IP address is associated with your AWS account. With an Elastic IP address, you 
 * `terraform apply`
 * `terraform show`
 * `terraform destroy`
-* ``
+* `terraform output <variable_name>`
