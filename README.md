@@ -26,7 +26,10 @@ https://www.terraform.io/intro/index.html
   - https://www.terraform.io/docs/providers/consul/r/key_prefix.html
 - For fully-featured remote backends, Terraform can also use **state locking** to prevent concurrent runs of Terraform against the same state. State locking happens automatically on all operations that could write state.
 - The prefix `-/+` means that Terraform will destroy and recreate the resource, rather than updating it in-place. While some attributes can be updated in-place (which are shown with the `~` prefix)
-
+- Variables: 
+  - https://learn.hashicorp.com/terraform/getting-started/variables
+  - For all files which match terraform.tfvars or *.auto.tfvars present in the current directory, Terraform automatically loads them to populate variables. 
+  - Terraform will read environment variables in the form of `TF_VAR_name` to find the value for a variable. 
 
 ## Resources
 * By studying the resource attributes used in interpolation expressions, Terraform can 
