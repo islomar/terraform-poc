@@ -56,6 +56,13 @@ automatically infer when one resource depends on another.
   - Provisioners are only run when a resource is created. 
   
 
+## Modules
+* Modules in Terraform are self-contained packages of Terraform configurations that are managed as a group. 
+* https://www.terraform.io/docs/modules/index.html
+* A module is a container for multiple resources that are used together.
+* Modules are used to create reusable components, improve organization, and to treat pieces of infrastructure as a black box.
+
+
 ## Terraform Enterprise
 * It offers **remote state**.
 * It supports an even stronger locking concept that can also detect attempts to create a new plan when an existing plan is already awaiting approval, by queuing Terraform operations in a central location. This allows teams to more easily coordinate and communicate about changes to infrastructure.
