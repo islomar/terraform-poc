@@ -21,6 +21,11 @@ resource "aws_instance" "example" {
     command = "echo ${aws_instance.example.public_ip} > ip_address.txt"
   }
 
+  provisioner "local-exec" {
+    when    = "destroy"
+    command = "echo 'Destroy-time provisioner'"
+  }
+
   # Tells Terraform that this EC2 instance must be created only after the
   # S3 bucket has been created.
 #  depends_on = ["aws_s3_bucket.example"]
