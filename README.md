@@ -65,7 +65,16 @@ automatically infer when one resource depends on another.
 * We do not recommend writing modules that are just thin wrappers around single other resource types. If you have trouble finding a name for your module that isn't the same as the main resource type inside it, that may be a sign that your module is not creating any new abstraction and so the module is adding unnecessary complexity. Just use the resource type directly in the calling module instead.
 
 
-## Terraform Enterprise
+## Terraform Remote
+* Terraform supports team-based workflows with a feature known as **remote backends**. Remote 
+backends allow Terraform to use a shared storage space for state data, so any member of your team can use Terraform to manage the same infrastructure.
+* Depending on the features you wish to use, Terraform has multiple remote backend options. You 
+could use **Consul** for state storage, locking, and environments. This is a free and open source 
+option. You can use **S3** which only supports state storage, for a low cost and minimally featured solution.
+* **Backend**: A "backend" in Terraform determines how state is loaded and how an operation such as apply is executed. This abstraction enables non-local file state storage, remote execution, etc.
+* Backends are completely optional.
+### Terraform Enterprise
+* https://www.terraform.io/docs/enterprise/getting-started/access.html
 * It offers **remote state**.
 * It supports an even stronger locking concept that can also detect attempts to create a new plan when an existing plan is already awaiting approval, by queuing Terraform operations in a central location. This allows teams to more easily coordinate and communicate about changes to infrastructure.
 

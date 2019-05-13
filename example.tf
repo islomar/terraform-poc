@@ -54,6 +54,14 @@ resource "aws_eip" "ip" {
   instance = "${aws_instance.example.id}"
 }
 
+terraform {
+  backend "consul" {
+    address = "demo.consul.io"
+    path    = "getting-started-islomar"
+    lock    = false
+  }
+}
+
 output "ami" {
   value = "${lookup(var.amis, var.region)}"
 }
