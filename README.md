@@ -27,6 +27,7 @@ https://www.terraform.io/intro/index.html
 - For fully-featured remote backends, Terraform can also use **state locking** to prevent concurrent runs of Terraform against the same state. State locking happens automatically on all operations that could write state.
 - The prefix `-/+` means that Terraform will destroy and recreate the resource, rather than updating it in-place. While some attributes can be updated in-place (which are shown with the `~` prefix)
 
+
 ## Resources
 * By studying the resource attributes used in interpolation expressions, Terraform can 
 automatically infer when one resource depends on another. 
@@ -39,6 +40,15 @@ automatically infer when one resource depends on another.
 ## AWS Provider
 * https://www.terraform.io/docs/providers/aws/index.html
 
+
+## Provisioners
+- Provisioners: https://www.terraform.io/docs/provisioners/index.html
+  - Provisioners are used to execute scripts on a local or remote machine as part of resource creation or destruction. 
+  - Provisioners can be used to bootstrap a resource, cleanup before destroy, run configuration 
+  management, etc.
+  - Provisioners are added directly to any resource
+  - Provisioners are only run when a resource is created. 
+  
 
 ## Terraform Enterprise
 * It offers **remote state**.
