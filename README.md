@@ -61,6 +61,8 @@ automatically infer when one resource depends on another.
 * https://www.terraform.io/docs/modules/index.html
 * A module is a container for multiple resources that are used together.
 * Modules are used to create reusable components, improve organization, and to treat pieces of infrastructure as a black box.
+* E.g. Consul module: https://registry.terraform.io/modules/hashicorp/consul/aws/0.6.1
+* We do not recommend writing modules that are just thin wrappers around single other resource types. If you have trouble finding a name for your module that isn't the same as the main resource type inside it, that may be a sign that your module is not creating any new abstraction and so the module is adding unnecessary complexity. Just use the resource type directly in the calling module instead.
 
 
 ## Terraform Enterprise

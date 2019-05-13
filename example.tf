@@ -34,6 +34,15 @@ resource "aws_instance" "example" {
 #  depends_on = ["aws_s3_bucket.example"]
 }
 
+//# WARNING: No Free-tier!!!
+/*
+module "consul" {
+  source = "hashicorp/consul/aws"
+
+  num_servers = "3"
+}
+*/
+
 /*
 resource "aws_instance" "another" {
   ami           = "ami-b374d5a5"
