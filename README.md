@@ -71,12 +71,18 @@ backends allow Terraform to use a shared storage space for state data, so any me
 * Depending on the features you wish to use, Terraform has multiple remote backend options. You 
 could use **Consul** for state storage, locking, and environments. This is a free and open source 
 option. You can use **S3** which only supports state storage, for a low cost and minimally featured solution.
+* **Consul**: https://demo.consul.io/ui/dc1/kv/getting-started-islomar/edit
 * **Backend**: A "backend" in Terraform determines how state is loaded and how an operation such as apply is executed. This abstraction enables non-local file state storage, remote execution, etc.
 * Backends are completely optional.
+
 ### Terraform Enterprise
-* https://www.terraform.io/docs/enterprise/getting-started/access.html
+* https://www.terraform.io/docs/enterprise/getting-started/index.html
 * It offers **remote state**.
 * It supports an even stronger locking concept that can also detect attempts to create a new plan when an existing plan is already awaiting approval, by queuing Terraform operations in a central location. This allows teams to more easily coordinate and communicate about changes to infrastructure.
+* To collaborate with your colleagues in TFE, you'll all need access to the same TFE organization. You can add users to an organization by creating a team and adding users to it.
+* Team membership is how TFE controls access to workspaces.
+* **Workspaces** are how TFE organizes infrastructure. If you've used the legacy version of TFE, 
+workspaces used to be called environments.
 
 
 ## AWS services
@@ -85,6 +91,10 @@ option. You can use **S3** which only supports state storage, for a low cost and
 IP address is associated with your AWS account. With an Elastic IP address, you can mask the failure of an instance or software by rapidly remapping the address to another instance in your account.
 * An Elastic IP address is a public IPv4 address, which is reachable from the internet. If your instance does not have a public IPv4 address, you can associate an Elastic IP address with your instance to enable communication with the internet; for example, to connect to your instance from your local computer.
 * We currently do not support Elastic IP addresses for IPv6.
+
+
+## Examples
+https://www.terraform.io/intro/examples/index.html
 
 
 ## Commands
