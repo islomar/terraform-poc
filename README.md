@@ -1,6 +1,10 @@
 # Notes about Terraform
 https://www.terraform.io/intro/index.html
 
+## Multiple AWS profiles
+https://blog.gruntwork.io/authenticating-to-aws-with-the-credentials-file-d16c0fbcbf9e
+
+
 ## General information
 * Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.
 * Terraform is **cloud-agnostic** and allows a single configuration to be used to manage multiple providers, and to even handle cross-cloud dependencies. 
@@ -12,6 +16,9 @@ https://www.terraform.io/intro/index.html
   - Resource Graph
   - Change automation
 * Terraform is not mutually exclusive with other systems. It can be used to manage a single application, or the entire datacenter.
+* To manage different versions of Terraform (similar to rbenv): https://github.com/tfutils/tfenv
+
+## Terraform configuration
 *  **Terraform configuration**:
   - A **provider** is responsible for creating and managing resources. E.g. `aws`.
   - A **resource** might be a physical component such as an EC2 instance, or it can be a logical resource such as a Heroku application. It defines a type: the prefix of the type maps to the provider, e.g. `aws_instance`
@@ -104,3 +111,8 @@ https://www.terraform.io/intro/examples/index.html
 * `terraform show`
 * `terraform destroy`
 * `terraform output <variable_name>`
+
+
+## PagerDuty
+* We need to configure a `PAGERDUTY_TOKEN`
+* `terraform apply -var 'pagerduty_token=<your_token>'` 
