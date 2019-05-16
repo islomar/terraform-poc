@@ -1,0 +1,2 @@
+variable "pagerduty_token" {
+}
