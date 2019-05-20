@@ -106,13 +106,17 @@ https://www.terraform.io/intro/examples/index.html
 
 ## Commands
 * `terraform init`
-* `terraform plan`
+* `terraform fmt`: linter (or `terraform fmt -check=true`, which would fail if not correclty formatted)
+* `terraform plan -out=exec_plan.tfplan`: it will save the plan (including the variables) and it will ONLY apply what it was there, i.e. if someone changed a property to a different value after having created the plan, that property will remain unchanged
+  - https://www.terraform.io/docs/internals/json-format.html
+  - `terraform show -json exec_plan.tfplan`
 * `terraform apply`
 * `terraform show`
 * `terraform destroy`
 * `terraform output <variable_name>`
+* `terraform graph`
 
 
 ## PagerDuty
 * We need to configure a `PAGERDUTY_TOKEN`
-* `terraform apply -var 'pagerduty_token=<your_token>'` 
+* `terraform apply -var 'pagerduty_token=<your_token>' -target=pagerduty_user.batman -out=exec_plan.tfplan` 

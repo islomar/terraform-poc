@@ -1,2 +1,1 @@
-variable "pagerduty_token" {
-}
+variable "pagerduty_token" {}
