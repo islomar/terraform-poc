@@ -91,6 +91,10 @@ option. You can use **S3** which only supports state storage, for a low cost and
 * **Workspaces** are how TFE organizes infrastructure. If you've used the legacy version of TFE, 
 workspaces used to be called environments.
 
+### Configure Terraform Cloud
+* https://learn.hashicorp.com/terraform/cloud/tf_cloud_gettingstarted.html
+* You need to create a `~/.terraformrc` file and copy a created API user token
+
 
 ## AWS services
 ### Elastic IP
