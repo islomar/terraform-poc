@@ -1,5 +1,5 @@
 resource "pagerduty_schedule" "on_call_schedule" {
-  name      = "On call schedule"
+  name      = "Production: on-call engineer"
   time_zone = "Europe/London"
 
   layer {
