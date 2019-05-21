@@ -22,49 +22,20 @@ resource "pagerduty_user_contact_method" "sms_global-admin" {
   label        = "Work"
 }
 
-resource "pagerduty_user" "user1" {
+module "user1" {
+  source    = "modules/users"
   name      = "User 1"
   email     = "islomar+pagerduty-user1@gmail.com"
-  time_zone = "Europe/London"
+  country_code = "+34"
+  phone_number = "666555444"
   teams     = ["${pagerduty_team.engineering.id}"]
 }
 
-resource "pagerduty_user_contact_method" "phone_user1" {
-  user_id      = "${pagerduty_user.user1.id}"
-  type         = "phone_contact_method"
-  country_code = "+34"
-  address      = "620666452"
-  label        = "Work"
-}
-
-resource "pagerduty_user_contact_method" "sms_user1" {
-  user_id      = "${pagerduty_user.user1.id}"
-  type         = "sms_contact_method"
-  country_code = "+1"
-  address      = "2025550199"
-  label        = "Work"
-}
-
-resource "pagerduty_user" "user2" {
+module "user2" {
+  source    = "modules/users"
   name      = "User 2"
   email     = "islomar+pagerduty-user2@gmail.com"
-  time_zone = "Europe/London"
+  country_code = "+34"
+  phone_number = "444555666"
   teams     = ["${pagerduty_team.engineering.id}"]
 }
-
-resource "pagerduty_user_contact_method" "phone_user2" {
-  user_id      = "${pagerduty_user.user2.id}"
-  type         = "phone_contact_method"
-  country_code = "+34"
-  address      = "620666452"
-  label        = "Work"
-}
-
-resource "pagerduty_user_contact_method" "sms_user2" {
-  user_id      = "${pagerduty_user.user2.id}"
-  type         = "sms_contact_method"
-  country_code = "+1"
-  address      = "2025550199"
-  label        = "Work"
-}
-

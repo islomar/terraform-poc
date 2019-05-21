@@ -2,7 +2,8 @@
 https://www.terraform.io/intro/index.html
 
 ## Multiple AWS profiles
-https://blog.gruntwork.io/authenticating-to-aws-with-the-credentials-file-d16c0fbcbf9e
+* Follow the instructions here: https://blog.gruntwork.io/authenticating-to-aws-with-the-credentials-file-d16c0fbcbf9e
+* * `set -x AWS_PROFILE islomar` 
 
 
 ## General information
@@ -106,6 +107,7 @@ IP address is associated with your AWS account. With an Elastic IP address, you 
 ## Vault
 * https://github.com/hashicorp/vault-guides
 * https://www.youtube.com/watch?time_continue=175&v=fOybhcbuxJ0
+* Consul snapshot
 * Configure S3 as the store for the encrypted state (it includes secrets). In `main.tf`:
 ```
 terraform {
@@ -117,6 +119,18 @@ terraform {
     }
 }
 ```
+* `ssh-add xxx`
+* `ssh` to the bastion
+* `ssh` to the Vault cluster
+* Unseal the three Vault instances
+* From the Bastion, `export VAULT_TOKEN=xxx`
+* Seeding Vault with secrets:
+    - The dev logs into Vault with a GitHub API key, and gets a Vault token for the rest of the 
+    day (it lasts for 24 hours). You can use a different auth system besides GitHub.
+    - They export the Vault token as an environment variable, so that Terraform uses it to fetch 
+    secrets from Vault. The secrets fetched are stored on the tfstate but expire after 5 minutes.
+     They get re-requested from Vault so long as the Vault token is valid.
+
 
 ## Examples
 https://www.terraform.io/intro/examples/index.html

@@ -1,3 +1,3 @@
-output "user_ids" {
-  value = "${join(",", pagerduty_user.*.id)}"
+output "user_id" {
+  value = "${pagerduty_user.main.id}"
 }

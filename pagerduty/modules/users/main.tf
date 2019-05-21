@@ -1,23 +1,23 @@
 # Create PagerDuty users
-resource "pagerduty_user" "${var.name}" {
+resource "pagerduty_user" "main" {
   name      = "${var.name}"
-  email     = "islomar+pagerduty-user1@gmail.com"
+  email     = "${var.email}"
   time_zone = "Europe/London"
-  teams     = "${var.teams}"
+  teams     = ["${var.teams}"]
 }
 
-resource "pagerduty_user_contact_method" "phone_user1" {
-  user_id      = "pagerduty_user.${var.name}.id"
+resource "pagerduty_user_contact_method" "phone_contact" {
+  user_id      = "${pagerduty_user.main.id}"
   type         = "phone_contact_method"
-  country_code = "+34"
-  address      = "620666452"
+  country_code = "${var.country_code}"
+  address      = "${var.phone_number}"
   label        = "Work"
 }
 
-resource "pagerduty_user_contact_method" "sms_user1" {
-  user_id      = "pagerduty_user.${var.name}.id"
+resource "pagerduty_user_contact_method" "sms_contact" {
+  user_id      = "${pagerduty_user.main.id}"
   type         = "sms_contact_method"
-  country_code = "+1"
-  address      = "2025550199"
+  country_code = "${var.country_code}"
+  address      = "${var.phone_number}"
   label        = "Work"
 }
