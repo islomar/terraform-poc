@@ -17,6 +17,11 @@ variable "country_code" {
   description = "Country code to be used both for the phone and the SMS"
 }
 
+variable "role" {
+  type = "string"
+  default = "user"
+}
+
 variable "teams" {
   type = "list"
   description = "A list of usernames responsible for approving code reviews in this repo"

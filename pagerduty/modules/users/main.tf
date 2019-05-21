@@ -3,6 +3,7 @@ resource "pagerduty_user" "main" {
   name      = "${var.name}"
   email     = "${var.email}"
   time_zone = "Europe/London"
+  role     = "${var.role}"
   teams     = ["${var.teams}"]
 }
 

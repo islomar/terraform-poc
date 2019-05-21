@@ -1,25 +1,11 @@
-resource "pagerduty_user" "global-admin" {
+module "global-admin" {
+  source    = "modules/users"
   name      = "Global admin"
-  email     = "islomar+pagerduty-admin@gmail.com"
-  time_zone = "Europe/London"
+  email     = "islomar+pagerduty-global-admin@gmail.com"
   role      = "admin"
-  teams     = ["${pagerduty_team.engineering.id}"]
-}
-
-resource "pagerduty_user_contact_method" "phone_global-admin" {
-  user_id      = "${pagerduty_user.global-admin.id}"
-  type         = "phone_contact_method"
   country_code = "+34"
-  address      = "620666452"
-  label        = "Work"
-}
-
-resource "pagerduty_user_contact_method" "sms_global-admin" {
-  user_id      = "${pagerduty_user.global-admin.id}"
-  type         = "sms_contact_method"
-  country_code = "+1"
-  address      = "2025550199"
-  label        = "Work"
+  phone_number = "222333444"
+  teams     = ["${pagerduty_team.engineering.id}"]
 }
 
 module "user1" {
