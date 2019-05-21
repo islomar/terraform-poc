@@ -103,6 +103,20 @@ IP address is associated with your AWS account. With an Elastic IP address, you 
 * An Elastic IP address is a public IPv4 address, which is reachable from the internet. If your instance does not have a public IPv4 address, you can associate an Elastic IP address with your instance to enable communication with the internet; for example, to connect to your instance from your local computer.
 * We currently do not support Elastic IP addresses for IPv6.
 
+## Vault
+* https://github.com/hashicorp/vault-guides
+* https://www.youtube.com/watch?time_continue=175&v=fOybhcbuxJ0
+* Configure S3 as the store for the encrypted state (it includes secrets). In `main.tf`:
+```
+terraform {
+    backend "s3" {
+        bucket = "remote-terraform-state-best-practices-demo"
+        encrypt = true
+        key = "terraform.tfstate"
+        region = "us-east-1"
+    }
+}
+```
 
 ## Examples
 https://www.terraform.io/intro/examples/index.html
