@@ -40,6 +40,7 @@ https://www.terraform.io/intro/index.html
   - Terraform will read environment variables in the form of `TF_VAR_name` to find the value for a variable. 
 - **Outputs** are a way to tell Terraform what data is important. This data is outputted when apply 
 is called, and can be queried using the terraform output command.
+- Resource or module names can not contain dots or empty spaces.
 
 
 ## Resources
@@ -144,6 +145,8 @@ https://www.terraform.io/intro/examples/index.html
   - `terraform show -json exec_plan.tfplan`
 * `terraform apply`
 * `terraform show`
+* `terraform state rm xx`: delete the resource from the state
+* `terraform state show xx`
 * `terraform destroy`
 * `terraform output <variable_name>`
 * `terraform graph`

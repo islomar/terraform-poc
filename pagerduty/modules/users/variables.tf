@@ -1,5 +1,5 @@
 variable "name" {
-  type = "string"
+  type        = "string"
   description = "User name"
 }
 
@@ -8,22 +8,22 @@ variable "email" {
 }
 
 variable "phone_number" {
-  type = "string"
+  type        = "string"
   description = "Number to be used both for the phone and the SMS"
 }
 
 variable "country_code" {
-  type = "string"
+  type        = "string"
   description = "Country code to be used both for the phone and the SMS"
 }
 
 variable "role" {
-  type = "string"
+  type    = "string"
   default = "user"
 }
 
 variable "teams" {
-  type = "list"
+  type        = "list"
   description = "A list of usernames responsible for approving code reviews in this repo"
-  default = []
+  default     = []
 }

@@ -15,6 +15,6 @@ provider "pagerduty" {
 
 # Create a PagerDuty team
 resource "pagerduty_team" "engineering" {
-  name        = "Engineering"
   description = "All engineering"
+  name        = "Engineering"
 }
