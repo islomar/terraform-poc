@@ -1,0 +1,472 @@
+{
+    "version": 3,
+    "terraform_version": "0.11.13",
+    "serial": 50,
+    "lineage": "afb2d323-e192-86b8-a3c7-90d9f015d5b1",
+    "modules": [
+        {
+            "path": [
+                "root"
+            ],
+            "outputs": {},
+            "resources": {
+                "pagerduty_escalation_policy.example": {
+                    "type": "pagerduty_escalation_policy",
+                    "depends_on": [
+                        "module.user2",
+                        "pagerduty_schedule.on_call_schedule",
+                        "pagerduty_team.engineering"
+                    ],
+                    "primary": {
+                        "id": "PT4JMOI",
+                        "attributes": {
+                            "description": "Managed by Terraform",
+                            "id": "PT4JMOI",
+                            "name": "Engineering Escalation Policy",
+                            "num_loops": "9",
+                            "rule.#": "2",
+                            "rule.0.escalation_delay_in_minutes": "4",
+                            "rule.0.id": "PFBW11U",
+                            "rule.0.target.#": "1",
+                            "rule.0.target.0.id": "P85AIIG",
+                            "rule.0.target.0.type": "schedule",
+                            "rule.1.escalation_delay_in_minutes": "3",
+                            "rule.1.id": "PC280P4",
+                            "rule.1.target.#": "1",
+                            "rule.1.target.0.id": "PHKL6QS",
+                            "rule.1.target.0.type": "user",
+                            "teams.#": "1",
+                            "teams.0": "PDSD016"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.pagerduty"
+                },
+                "pagerduty_schedule.on_call_schedule": {
+                    "type": "pagerduty_schedule",
+                    "depends_on": [
+                        "module.user1",
+                        "module.user2"
+                    ],
+                    "primary": {
+                        "id": "P85AIIG",
+                        "attributes": {
+                            "description": "Managed by Terraform",
+                            "id": "P85AIIG",
+                            "layer.#": "1",
+                            "layer.0.end": "",
+                            "layer.0.id": "PPTKSDI",
+                            "layer.0.name": "On call schedule",
+                            "layer.0.restriction.#": "0",
+                            "layer.0.rotation_turn_length_seconds": "604800",
+                            "layer.0.rotation_virtual_start": "2018-05-22T12:00:00+01:00",
+                            "layer.0.start": "2018-05-22T12:00:00+01:00",
+                            "layer.0.users.#": "2",
+                            "layer.0.users.0": "P6GPTDW",
+                            "layer.0.users.1": "PHKL6QS",
+                            "name": "Production: on-call engineer",
+                            "time_zone": "Europe/London"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.pagerduty"
+                },
+                "pagerduty_team.engineering": {
+                    "type": "pagerduty_team",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "PDSD016",
+                        "attributes": {
+                            "description": "All engineering",
+                            "id": "PDSD016",
+                            "name": "Engineering"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.pagerduty"
+                },
+                "pagerduty_user.john_smith": {
+                    "type": "pagerduty_user",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "PDYPHT3",
+                        "attributes": {
+                            "avatar_url": "https://secure.gravatar.com/avatar/6ba9f399ce93063846fda18ddeae46e4.png?d=mm\u0026r=PG",
+                            "color": "orange",
+                            "description": "",
+                            "email": "islomar+pagerduty-johnsmith@gmail.com",
+                            "id": "PDYPHT3",
+                            "job_title": "",
+                            "name": "John Smith",
+                            "role": "user",
+                            "time_zone": "Europe/Madrid"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.pagerduty"
+                }
+            },
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "global-admin"
+            ],
+            "outputs": {
+                "user_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "PS138AC"
+                }
+            },
+            "resources": {
+                "pagerduty_user.main": {
+                    "type": "pagerduty_user",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "PS138AC",
+                        "attributes": {
+                            "avatar_url": "https://secure.gravatar.com/avatar/261ea5b753afb7e3aaba89d08c10fbce.png?d=mm\u0026r=PG",
+                            "color": "green",
+                            "description": "Managed by Terraform",
+                            "email": "islomar+pagerduty-global-admin@gmail.com",
+                            "id": "PS138AC",
+                            "job_title": "",
+                            "name": "Global admin",
+                            "role": "admin",
+                            "teams.#": "1",
+                            "teams.1815704441": "PDSD016",
+                            "time_zone": "Europe/London"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.pagerduty"
+                },
+                "pagerduty_user_contact_method.phone_contact": {
+                    "type": "pagerduty_user_contact_method",
+                    "depends_on": [
+                        "pagerduty_user.main"
+                    ],
+                    "primary": {
+                        "id": "PWD2XCS",
+                        "attributes": {
+                            "address": "222333444",
+                            "blacklisted": "false",
+                            "country_code": "34",
+                            "enabled": "false",
+                            "id": "PWD2XCS",
+                            "label": "Work",
+                            "send_short_email": "false",
+                            "type": "phone_contact_method",
+                            "user_id": "PS138AC"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.pagerduty"
+                },
+                "pagerduty_user_contact_method.sms_contact": {
+                    "type": "pagerduty_user_contact_method",
+                    "depends_on": [
+                        "pagerduty_user.main"
+                    ],
+                    "primary": {
+                        "id": "PAPQYRF",
+                        "attributes": {
+                            "address": "222333444",
+                            "blacklisted": "false",
+                            "country_code": "34",
+                            "enabled": "true",
+                            "id": "PAPQYRF",
+                            "label": "Work",
+                            "send_short_email": "false",
+                            "type": "sms_contact_method",
+                            "user_id": "PS138AC"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.pagerduty"
+                }
+            },
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "isidro_lopez"
+            ],
+            "outputs": {
+                "user_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "PPXHE9Z"
+                }
+            },
+            "resources": {
+                "pagerduty_user.main": {
+                    "type": "pagerduty_user",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "PPXHE9Z",
+                        "attributes": {
+                            "avatar_url": "https://secure.gravatar.com/avatar/d785a1b0155375ee91c8151e4e099d2f.png?d=mm\u0026r=PG",
+                            "color": "blue",
+                            "description": "Managed by Terraform",
+                            "email": "islomar+pagerduty-user3@gmail.com",
+                            "id": "PPXHE9Z",
+                            "job_title": "",
+                            "name": "User 3cc",
+                            "role": "user",
+                            "teams.#": "1",
+                            "teams.1815704441": "PDSD016",
+                            "time_zone": "Europe/London"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.pagerduty"
+                },
+                "pagerduty_user_contact_method.phone_contact": {
+                    "type": "pagerduty_user_contact_method",
+                    "depends_on": [
+                        "pagerduty_user.main"
+                    ],
+                    "primary": {
+                        "id": "PYY6RVT",
+                        "attributes": {
+                            "address": "444555666",
+                            "blacklisted": "false",
+                            "country_code": "34",
+                            "enabled": "false",
+                            "id": "PYY6RVT",
+                            "label": "Work",
+                            "send_short_email": "false",
+                            "type": "phone_contact_method",
+                            "user_id": "PPXHE9Z"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.pagerduty"
+                },
+                "pagerduty_user_contact_method.sms_contact": {
+                    "type": "pagerduty_user_contact_method",
+                    "depends_on": [
+                        "pagerduty_user.main"
+                    ],
+                    "primary": {
+                        "id": "PULIQG3",
+                        "attributes": {
+                            "address": "444555666",
+                            "blacklisted": "false",
+                            "country_code": "34",
+                            "enabled": "true",
+                            "id": "PULIQG3",
+                            "label": "Work",
+                            "send_short_email": "false",
+                            "type": "sms_contact_method",
+                            "user_id": "PPXHE9Z"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.pagerduty"
+                }
+            },
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "user1"
+            ],
+            "outputs": {
+                "user_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "P6GPTDW"
+                }
+            },
+            "resources": {
+                "pagerduty_user.main": {
+                    "type": "pagerduty_user",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "P6GPTDW",
+                        "attributes": {
+                            "avatar_url": "https://secure.gravatar.com/avatar/f0ba80b0021a8d7f1803af61838ed44a.png?d=mm\u0026r=PG",
+                            "color": "red",
+                            "description": "Managed by Terraform",
+                            "email": "islomar+pagerduty-user1@gmail.com",
+                            "id": "P6GPTDW",
+                            "job_title": "",
+                            "name": "User 1",
+                            "role": "user",
+                            "teams.#": "1",
+                            "teams.1815704441": "PDSD016",
+                            "time_zone": "Europe/London"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.pagerduty"
+                },
+                "pagerduty_user_contact_method.phone_contact": {
+                    "type": "pagerduty_user_contact_method",
+                    "depends_on": [
+                        "pagerduty_user.main"
+                    ],
+                    "primary": {
+                        "id": "P3CH4VC",
+                        "attributes": {
+                            "address": "666555444",
+                            "blacklisted": "false",
+                            "country_code": "34",
+                            "enabled": "false",
+                            "id": "P3CH4VC",
+                            "label": "Work",
+                            "send_short_email": "false",
+                            "type": "phone_contact_method",
+                            "user_id": "P6GPTDW"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.pagerduty"
+                },
+                "pagerduty_user_contact_method.sms_contact": {
+                    "type": "pagerduty_user_contact_method",
+                    "depends_on": [
+                        "pagerduty_user.main"
+                    ],
+                    "primary": {
+                        "id": "P7P5582",
+                        "attributes": {
+                            "address": "666555444",
+                            "blacklisted": "false",
+                            "country_code": "34",
+                            "enabled": "true",
+                            "id": "P7P5582",
+                            "label": "Work",
+                            "send_short_email": "false",
+                            "type": "sms_contact_method",
+                            "user_id": "P6GPTDW"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.pagerduty"
+                }
+            },
+            "depends_on": []
+        },
+        {
+            "path": [
+                "root",
+                "user2"
+            ],
+            "outputs": {
+                "user_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "PHKL6QS"
+                }
+            },
+            "resources": {
+                "pagerduty_user.main": {
+                    "type": "pagerduty_user",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "PHKL6QS",
+                        "attributes": {
+                            "avatar_url": "https://secure.gravatar.com/avatar/763e13a9d60499c0bbe3f3efcc9de325.png?d=mm\u0026r=PG",
+                            "color": "teal",
+                            "description": "Managed by Terraform",
+                            "email": "islomar+pagerduty-user2@gmail.com",
+                            "id": "PHKL6QS",
+                            "job_title": "",
+                            "name": "User 2bb",
+                            "role": "user",
+                            "teams.#": "1",
+                            "teams.1815704441": "PDSD016",
+                            "time_zone": "Europe/London"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.pagerduty"
+                },
+                "pagerduty_user_contact_method.phone_contact": {
+                    "type": "pagerduty_user_contact_method",
+                    "depends_on": [
+                        "pagerduty_user.main"
+                    ],
+                    "primary": {
+                        "id": "P78B8GA",
+                        "attributes": {
+                            "address": "444555666",
+                            "blacklisted": "false",
+                            "country_code": "34",
+                            "enabled": "false",
+                            "id": "P78B8GA",
+                            "label": "Work",
+                            "send_short_email": "false",
+                            "type": "phone_contact_method",
+                            "user_id": "PHKL6QS"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.pagerduty"
+                },
+                "pagerduty_user_contact_method.sms_contact": {
+                    "type": "pagerduty_user_contact_method",
+                    "depends_on": [
+                        "pagerduty_user.main"
+                    ],
+                    "primary": {
+                        "id": "PNHM9W0",
+                        "attributes": {
+                            "address": "444555666",
+                            "blacklisted": "false",
+                            "country_code": "34",
+                            "enabled": "true",
+                            "id": "PNHM9W0",
+                            "label": "Work",
+                            "send_short_email": "false",
+                            "type": "sms_contact_method",
+                            "user_id": "PHKL6QS"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.pagerduty"
+                }
+            },
+            "depends_on": []
+        }
+    ]
+}

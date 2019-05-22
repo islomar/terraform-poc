@@ -7,14 +7,24 @@ variable "email" {
   type = "string"
 }
 
+variable "country_code" {
+  type        = "string"
+  description = "Country code to be used both for the phone and the SMS"
+}
+
 variable "phone_number" {
   type        = "string"
   description = "Number to be used both for the phone and the SMS"
 }
 
-variable "country_code" {
-  type        = "string"
-  description = "Country code to be used both for the phone and the SMS"
+variable "phone_label" {
+  type = "string"
+  default = "Mobile"
+}
+
+variable "sms_label" {
+  type = "string"
+  default = "Mobile"
 }
 
 variable "role" {

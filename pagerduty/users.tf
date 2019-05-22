@@ -34,3 +34,22 @@ module "isidro_lopez" {
   phone_number = "444555666"
   teams        = ["${pagerduty_team.engineering.id}"]
 }
+
+// module.john_smith.pagerduty_user
+
+//module "john_smith" {
+//  source       = "modules/users"
+//  email        = "islomar+pagerduty-johnsmith@gmail.com"
+//  name         = "John Smith"
+//  country_code = "+34"
+//  phone_number = "444555666"
+//  teams        = ["${pagerduty_team.engineering.id}"]
+//}
+
+module "john_smith" {
+  source = "modules/users"
+  name = ""
+  email = ""
+  country_code = ""
+  phone_number = ""
+}

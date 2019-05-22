@@ -147,11 +147,18 @@ https://www.terraform.io/intro/examples/index.html
 * `terraform show`
 * `terraform state rm xx`: delete the resource from the state
 * `terraform state show xx`
+    - e.g. `terraform state show module.john_smith.pagerduty_user.main`
+    - e.g. `terraform state show module.john_smith.pagerduty_user_contact_method.sms`
 * `terraform destroy`
 * `terraform output <variable_name>`
 * `terraform graph`
+* `terraform import [-allow-missing-config] <resource_path> <resource_id>`
+    - e.g. `terraform import -var 'pagerduty_token=<PAGERDUTY_TOKEN>' -allow-missing-config  module.john_smith.pagerduty_user_contact_method.sms PRQST7J:PNID97H`
 
 
 ## PagerDuty
 * We need to configure a `PAGERDUTY_TOKEN`
 * `terraform apply -var 'pagerduty_token=<your_token>' -target=pagerduty_user.batman -out=exec_plan.tfplan` 
+
+### API
+* `curl -X GET --header 'Accept: application/vnd.pagerduty+json;version=2' --header 'Authorization: Token token=<PAGERDUTY_TOKEN>' 'https://api.pagerduty.com/users' | | jq '.users[] | select(.id == "PPXHE9Z")'`
