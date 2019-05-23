@@ -46,10 +46,58 @@ module "isidro_lopez" {
 //  teams        = ["${pagerduty_team.engineering.id}"]
 //}
 
-module "john_smith" {
-  source = "modules/users"
-  name = ""
-  email = ""
-  country_code = ""
-  phone_number = ""
+//module "john_smith" {
+//  source = "modules/users"
+//  name = ""
+//  email = ""
+//  country_code = ""
+//  phone_number = ""
+//}
+
+resource "pagerduty_user" "user4" {
+  name      = "User 4"
+  time_zone = "Europe/London"
+  role      = "user"
+  email     = "islomar+pagerduty-user4@gmail.com"
+  teams     = ["${pagerduty_team.engineering.id}"]
+}
+
+resource "pagerduty_user_contact_method" "user4_phone" {
+  user_id      = "${pagerduty_user.user4.id}"
+  type         = "phone_contact_method"
+  country_code = "+34"
+  address      = "111222333"
+  label        = "Mobile"
+}
+
+resource "pagerduty_user_contact_method" "user4_sms" {
+  user_id      = "${pagerduty_user.user4.id}"
+  type         = "sms_contact_method"
+  country_code = "+34"
+  address      = "111222333"
+  label        = "Work"
+}
+
+resource "pagerduty_user" "user5" {
+  name      = "User 5"
+  email     = "islomar+pagerduty-user5@gmail.com"
+  time_zone = "Europe/London"
+  role      = "user"
+  teams     = ["${pagerduty_team.engineering.id}"]
+}
+
+resource "pagerduty_user_contact_method" "user5_phone" {
+  user_id      = "${pagerduty_user.user5.id}"
+  type         = "phone_contact_method"
+  country_code = "+34"
+  address      = "111222333"
+  label        = "Work"
+}
+
+resource "pagerduty_user_contact_method" "user5_sms" {
+  user_id      = "${pagerduty_user.user5.id}"
+  type         = "sms_contact_method"
+  country_code = "+34"
+  address      = "111222333"
+  label        = "Mobile"
 }

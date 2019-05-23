@@ -7,7 +7,7 @@ resource "pagerduty_escalation_policy" "example" {
     escalation_delay_in_minutes = 4
 
     target {
-      type = "schedule"
+      type = "schedule_reference"
       id   = "${pagerduty_schedule.on_call_schedule.id}"
     }
   }
@@ -16,7 +16,7 @@ resource "pagerduty_escalation_policy" "example" {
     escalation_delay_in_minutes = 3
 
     target {
-      type = "user"
+      type = "user_reference"
       id   = "${module.user2.user_id}"
     }
   }
