@@ -18,12 +18,12 @@ variable "phone_number" {
 }
 
 variable "phone_label" {
-  type = "string"
+  type    = "string"
   default = "Mobile"
 }
 
 variable "sms_label" {
-  type = "string"
+  type    = "string"
   default = "Mobile"
 }
 
