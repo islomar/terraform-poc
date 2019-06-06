@@ -1,5 +1,7 @@
 # Notes about Terraform
-https://www.terraform.io/intro/index.html
+* hhtps://www.terraform.io/intro/index.html
+* https://blog.gruntwork.io/a-comprehensive-guide-to-terraform-b3d32832baca
+  - https://github.com/gruntwork-io/intro-to-terraform
 
 ## Multiple AWS profiles
 * Follow the instructions here: https://blog.gruntwork.io/authenticating-to-aws-with-the-credentials-file-d16c0fbcbf9e
