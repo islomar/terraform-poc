@@ -151,6 +151,7 @@ https://www.terraform.io/intro/examples/index.html
 * `terraform state show xx`
     - e.g. `terraform state show module.john_smith.pagerduty_user.main`
     - e.g. `terraform state show module.john_smith.pagerduty_user_contact_method.sms`
+* `terraform state rm ""`: remove all the state
 * `terraform destroy`
 * `terraform output <variable_name>`
 * `terraform graph`
