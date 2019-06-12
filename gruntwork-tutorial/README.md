@@ -9,3 +9,12 @@
 
 ## Interesting links
 * [AWS in Plain English](https://www.expeditedssl.com/aws-in-plain-english)
+
+
+## How to manage Terraform state
+* Terraform records information about what infrastructure it created in a Terraform state file
+* S3 as remote state storage
+* we recommend using separate Terraform folders (and therefore separate state files) for each environment (staging, production, etc.), and within each environment, each “component.”)
+* data source that is particularly useful when working with state: terraform_remote_state. You can use this data source to fetch the Terraform state file stored by another set of templates.
+* https://www.terraform.io/docs/providers/terraform/d/remote_state.html
+
