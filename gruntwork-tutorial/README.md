@@ -18,3 +18,10 @@
 * data source that is particularly useful when working with state: terraform_remote_state. You can use this data source to fetch the Terraform state file stored by another set of templates.
 * https://www.terraform.io/docs/providers/terraform/d/remote_state.html
 
+## How to create reusable infrastructure with Terraform modules
+Whenever you add one to a Terraform project, you need to run the “get” command before you run “plan” or “apply”:
+```
+> terraform get
+Get: /modules/frontend-app
+> terraform plan
+```
