@@ -19,9 +19,12 @@
 * https://www.terraform.io/docs/providers/terraform/d/remote_state.html
 
 ## How to create reusable infrastructure with Terraform modules
-Whenever you add one to a Terraform project, you need to run the “get” command before you run “plan” or “apply”:
+* Whenever you add one to a Terraform project, you need to run the “get” command before you run “plan” or “apply”:
 ```
 > terraform get
 Get: /modules/frontend-app
 > terraform plan
 ```
+* You can use versioned modules, e.g. for decoupling Staging and Production
+* Terraform supports other types of module sources, such as Git URLs, Mercurial URLs, and arbitrary HTTP URLs
+* Most Terraform projects consist of (at least) two repos: **infrastructure-modules** and **infrastructure-live**
