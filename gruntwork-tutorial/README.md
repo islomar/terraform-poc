@@ -28,3 +28,4 @@ Get: /modules/frontend-app
 * You can use versioned modules, e.g. for decoupling Staging and Production
 * Terraform supports other types of module sources, such as Git URLs, Mercurial URLs, and arbitrary HTTP URLs
 * Most Terraform projects consist of (at least) two repos: **infrastructure-modules** and **infrastructure-live**
+* Whenever adding a new module, don’t forget to run `terraform get`
