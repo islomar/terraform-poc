@@ -6,6 +6,8 @@
     - Forked here: https://github.com/islomar/intro-to-terraform
 * Part 3: [How to manage Terraform state](https://blog.gruntwork.io/how-to-manage-terraform-state-28f5697e68fa)
 * Part 4: [How to create reusable infrastructure with Terraform modules](https://blog.gruntwork.io/how-to-create-reusable-infrastructure-with-terraform-modules-25526d65f73d)
+* Part 5: [Terraform tips & tricks: loops, if-statements, and gotchas](https://blog.gruntwork.io/terraform-tips-tricks-loops-if-statements-and-gotchas-f739bbae55f9)
+
 
 ## Interesting links
 * [AWS in Plain English](https://www.expeditedssl.com/aws-in-plain-english)
@@ -29,3 +31,6 @@ Get: /modules/frontend-app
 * Terraform supports other types of module sources, such as Git URLs, Mercurial URLs, and arbitrary HTTP URLs
 * Most Terraform projects consist of (at least) two repos: **infrastructure-modules** and **infrastructure-live**
 * Whenever adding a new module, don’t forget to run `terraform get`
+* When creating modules, there are two best practices to keep in mind:
+  - Avoid inline blocks: you should always try to use a separate resource instead of the inline block.
+  - Use module-relative paths: always use a path variable in file paths, e.g. `user_data = "${file("${path.module}/user-data.sh")}"`
