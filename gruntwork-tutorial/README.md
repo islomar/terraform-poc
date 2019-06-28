@@ -7,6 +7,7 @@
 * Part 3: [How to manage Terraform state](https://blog.gruntwork.io/how-to-manage-terraform-state-28f5697e68fa)
 * Part 4: [How to create reusable infrastructure with Terraform modules](https://blog.gruntwork.io/how-to-create-reusable-infrastructure-with-terraform-modules-25526d65f73d)
 * Part 5: [Terraform tips & tricks: loops, if-statements, and gotchas](https://blog.gruntwork.io/terraform-tips-tricks-loops-if-statements-and-gotchas-f739bbae55f9)
+* Part 6: [How to use Terraform as a team](https://blog.gruntwork.io/how-to-use-terraform-as-a-team-251bc1104973)
 
 
 ## Interesting links
@@ -34,3 +35,13 @@ Get: /modules/frontend-app
 * When creating modules, there are two best practices to keep in mind:
   - Avoid inline blocks: you should always try to use a separate resource instead of the inline block.
   - Use module-relative paths: always use a path variable in file paths, e.g. `user_data = "${file("${path.module}/user-data.sh")}"`
+
+
+## Terraform tips & tricks: loops, if-statements, and gotchas
+* Loops, splat syntax (`TYPE.NAME.*.ATTRIBUTE`)
+* Interpolation functions: https://www.terraform.io/docs/configuration-0-11/interpolation.html
+* The key realization is that **`terraform plan` only looks at resources in its Terraform state file**
+
+
+## How to use Terraform as a team
+TBD

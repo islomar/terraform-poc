@@ -20,7 +20,10 @@
   - Change automation
 * Terraform is not mutually exclusive with other systems. It can be used to manage a single application, or the entire datacenter.
 * To manage different versions of Terraform (similar to rbenv): https://github.com/tfutils/tfenv
-
+* `terraform refresh`, then `terraform plan -refresh=false -out=terraform.plan` then `terraform apply terraform.plan`
+    - https://www.terraform.io/docs/commands/refresh.html
+    
+    
 ## Terraform configuration
 *  **Terraform configuration**:
   - A **provider** is responsible for creating and managing resources. E.g. `aws`.
