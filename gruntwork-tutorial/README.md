@@ -44,4 +44,24 @@ Get: /modules/frontend-app
 
 
 ## How to use Terraform as a team
-TBD
+* You should probably have at least two separate version control repositories: 
+    * one for modules (reusable) 
+    * one for live infrastructure
+* You should be able to reason about your infrastructure solely by looking at the live repository. If you can scan the code and the commit history of that repository and get an accurate understanding of what’s deployed, then you’ll find it easy to maintain your infrastructure.
+* The master branch of the live repository is a 1:1 representation of what’s actually deployed in production.
+* Run `terraform fmt` as a pre-commit hook
+* Every time we create a Terraform module we also create:
+    - Example code
+    - Automated test: https://github.com/gruntwork-io/terratest
+* We recommend that every team maintains at least two environments:
+    - Production
+    - Staging
+* Testing in staging is especially important because Terraform does not roll back changes in the case of errors.
+* Some types of Terraform changes can be automated:
+    - if you’re using Terraform to apply the same type of change over and over again (e.g. to deploy a new version of your app in a CD pipeline), you may want to completely automate the process.
+    - For these sorts of repetitive, mechanical changes, we recommend writing a deployment script (or using [one of ours](https://blog.gruntwork.io/gruntwork-infrastructure-packages-7434dc77d0b1)) that can automatically do the following:      
+      - Check out the live Terraform repository.
+      - Update the version number for the app in the corresponding Terraform templates.
+      - Run “terraform apply”.
+   - We typically set up commit hooks to run such an automated deployment script after every commit to the master branch of an application’s repository (note: the application code is in a separate repository from the Terraform code, so don’t confuse this for the master branch of the live repo!). Typically, we deploy the app to staging if that commit has a “release-stage” tag and to production if it has a “release-prod” tag. If you’re using GitHub, you can create tags using the Releases UI, so this gives you a point-and-click way to kick off an automated deployment, and allows you to use the releases page of your repository as a record of all deployments.
+    - https://developer.github.com/v3/repos/releases/#create-a-release

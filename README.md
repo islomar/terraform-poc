@@ -3,10 +3,19 @@
 * https://blog.gruntwork.io/a-comprehensive-guide-to-terraform-b3d32832baca
   - https://github.com/gruntwork-io/intro-to-terraform
 
-## Multiple AWS profiles
-* Follow the instructions here: https://blog.gruntwork.io/authenticating-to-aws-with-the-credentials-file-d16c0fbcbf9e
-* * `set -x AWS_PROFILE islomar` 
-
+## How to use multiple AWS accounts from the command line: profiles
+* Follow the instructions here: 
+    - https://blog.gruntwork.io/authenticating-to-aws-with-the-credentials-file-d16c0fbcbf9e
+    - https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#cli-multiple-profiles
+    - https://stackoverflow.com/questions/593334/how-to-use-multiple-aws-accounts-from-the-command-line
+* Option 1: create another profile
+    - `aws configure list`: show all the existing profiles
+    - `aws configure --profile islomar-personal`
+    - `set -x AWS_PROFILE islomar-personal` 
+* Option 2:
+    - Add a profile here: `~/.aws/credentials`
+    - Run any command passing the profile, e.g. `aws <command> --profile <profile_name>`
+    - or set `set -x AWS_PROFILE islomar`
 
 ## General information
 * Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.
@@ -109,33 +118,6 @@ workspaces used to be called environments.
 IP address is associated with your AWS account. With an Elastic IP address, you can mask the failure of an instance or software by rapidly remapping the address to another instance in your account.
 * An Elastic IP address is a public IPv4 address, which is reachable from the internet. If your instance does not have a public IPv4 address, you can associate an Elastic IP address with your instance to enable communication with the internet; for example, to connect to your instance from your local computer.
 * We currently do not support Elastic IP addresses for IPv6.
-
-## Vault
-* https://github.com/hashicorp/vault-guides
-* https://www.youtube.com/watch?time_continue=175&v=fOybhcbuxJ0
-* Consul snapshot
-* Configure S3 as the store for the encrypted state (it includes secrets). In `main.tf`:
-```
-terraform {
-    backend "s3" {
-        bucket = "remote-terraform-state-best-practices-demo"
-        encrypt = true
-        key = "terraform.tfstate"
-        region = "us-east-1"
-    }
-}
-```
-* `ssh-add xxx`
-* `ssh` to the bastion
-* `ssh` to the Vault cluster
-* Unseal the three Vault instances
-* From the Bastion, `export VAULT_TOKEN=xxx`
-* Seeding Vault with secrets:
-    - The dev logs into Vault with a GitHub API key, and gets a Vault token for the rest of the 
-    day (it lasts for 24 hours). You can use a different auth system besides GitHub.
-    - They export the Vault token as an environment variable, so that Terraform uses it to fetch 
-    secrets from Vault. The secrets fetched are stored on the tfstate but expire after 5 minutes.
-     They get re-requested from Vault so long as the Vault token is valid.
 
 
 ## Examples
