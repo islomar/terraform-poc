@@ -106,6 +106,9 @@ option. You can use **S3** which only supports state storage, for a low cost and
 * Team membership is how TFE controls access to workspaces.
 * **Workspaces** are how TFE organizes infrastructure. If you've used the legacy version of TFE, 
 workspaces used to be called environments.
+  * https://codurance.com/2020/04/28/terraform-with-multiple-environments/
+  * https://www.terraform.io/docs/state/workspaces.html
+  * https://www.terraform.io/docs/cloud/guides/recommended-practices/part1.html
 
 ### Configure Terraform Cloud
 * https://learn.hashicorp.com/terraform/cloud/tf_cloud_gettingstarted.html
@@ -150,3 +153,7 @@ https://www.terraform.io/intro/examples/index.html
 
 ### API
 * `curl -X GET --header 'Accept: application/vnd.pagerduty+json;version=2' --header 'Authorization: Token token=<PAGERDUTY_TOKEN>' 'https://api.pagerduty.com/users' | | jq '.users[] | select(.id == "PPXHE9Z")'`
+
+
+## Recommended practices
+* https://www.terraform.io/docs/cloud/guides/recommended-practices/part1.html
