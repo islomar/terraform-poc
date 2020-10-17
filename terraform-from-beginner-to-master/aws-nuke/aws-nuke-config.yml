@@ -1,0 +1,53 @@
+regions:
+- global
+- eu-west-1
+- eu-west-2
+- eu-west-3
+- eu-north-1
+- eu-central-1
+- us-west-1
+- us-west-2
+- us-east-1
+- us-east-2
+- sa-east-1
+- ca-central-1
+- ap-southeast-1
+- ap-northeast-2
+- ap-south-1
+
+account-blacklist:
+- "999999999999" # production
+
+accounts:
+  "<your_account_number>": # islomar-staging
+    filters:
+      IAMUser:
+      - "Administrator"
+      IAMGroup:
+      - "Administrators"
+      IAMGroupPolicyAttachment:
+      - "Administrators -> AdministratorAccess"
+      IAMUserPolicyAttachment:
+      - "Administrators -> AdministratorAccess"
+      - "Administrator -> Billing"
+      - "AWSServiceRoleForTrustedAdvisor -> AWSTrustedAdvisorServiceRolePolicy"
+      IAMUserGroupAttachment:
+      - "Administrator -> Administrators"
+      IAMUserAccessKey:
+      - "Administrator -> AKIAWVSDEMCEGZB2H6XH"
+      IAMServiceSpecificCredential:
+      - "Administrator -> Administrator-at-<your_account_number>"
+      IAMLoginProfile:
+      - "Administrator"
+
+resource-types:
+  # don't nuke IAM resources
+  excludes:
+  - IAMUser
+  - IAMUserPolicyAttachment
+  - IAMUserGroupAttachment
+  - IAMGroup
+  - IAMGroupPolicyAttachment
+  - IAMLoginProfile
+  - IAMUserAccessKey
+  - IAMServiceSpecificCredential
