@@ -79,7 +79,9 @@
 
 ## Chapter 9 - Templates and Files
 
-TBD
+* We have seen in a previous chapter how you can place a multi line string as a value for a property. This is useful for something like an IAM policy. It can be even cleaner to move the value out into a file and then reference that file from your project.
+* To be able to use dynamic values in a file we need to use the templatefile function.
+
 
 ## Chapter 11 - Project Layout
 
@@ -107,7 +109,7 @@ TBD
 
 ## Bookmark
 
-Page 28/90
+Page 33/90
 
 ## Notes for Kevin
 
@@ -120,4 +122,5 @@ Page 28/90
 - Page 12:
   - typo `lets` instead of `let's`
   - List of actions instead of a block of text with mixed commands and text in it.
+- Page 33: the text for the "Chapter 10" does not have the right font size and style. 
 - Examples are GREAT.
