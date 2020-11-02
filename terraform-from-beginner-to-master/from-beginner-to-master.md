@@ -66,7 +66,10 @@
 
 ## Chapter 7 - Outputs
 
-TBD
+* Outputs are very useful when used to output the values of resources that have been created as part of a Terraform run.
+* Terraform prints the outputs in alphabetical order, not the order that you define them in your project. That is a good point to make, that Terraform does not care which order you define the blocks in your project.
+* As of Terraform 0.12> (which this book is based on), Terraform allows you to output an entire resource or data block (see outputs_example_03): `output "all"` in order to output the whole resource.
+
 
 ## Chapter 8 - Locals
 
