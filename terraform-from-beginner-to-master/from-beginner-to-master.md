@@ -73,7 +73,9 @@
 
 ## Chapter 8 - Locals
 
-TBD
+* A local is Terraform’s representation of a normal programming languages’s variable. Confusingly Terraform also has a concept called a variable which is really an input.
+* Locals can reference the output of a resource or a data source
+
 
 ## Chapter 9 - Templates and Files
 
@@ -99,9 +101,13 @@ TBD
 
 TBD
 
+## General
+* since Terraform 0.12> we can now omit the ${ and }
+
+
 ## Bookmark
 
-Page 25/90
+Page 28/90
 
 ## Notes for Kevin
 
@@ -114,3 +120,4 @@ Page 25/90
 - Page 12:
   - typo `lets` instead of `let's`
   - List of actions instead of a block of text with mixed commands and text in it.
+- Examples are GREAT.
