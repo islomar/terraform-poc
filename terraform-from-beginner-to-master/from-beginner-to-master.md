@@ -81,7 +81,14 @@
 
 * We have seen in a previous chapter how you can place a multi line string as a value for a property. This is useful for something like an IAM policy. It can be even cleaner to move the value out into a file and then reference that file from your project.
 * To be able to use dynamic values in a file we need to use the templatefile function.
+* The template file would be `*.tpl`
+* You can also create loops in a template
 
+### Variables
+* A Variable in Terraform is something which can be set at runtime. It allows you to vary what Terraform will do by passing in or using a dynamic value.
+* When needed, you can provide a description for the variable
+* Use it like `var.<variableIdentifier>`
+* When destroying a resource which includes a variable, Terraform will ask you for a value for the variable again, it doesn't actually matter what value you give it this time as the variable is not needed for Terraform to destroy the bucket.
 
 ## Chapter 11 - Project Layout
 

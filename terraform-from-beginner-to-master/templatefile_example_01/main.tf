@@ -1,3 +1,4 @@
+
 locals {
   rendered = templatefile("./example.tpl", { name = "kevin", number = 7})
 }

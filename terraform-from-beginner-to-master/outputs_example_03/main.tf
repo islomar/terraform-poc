@@ -1,4 +1,3 @@
-IntelliJ IDEA
 
 provider "aws" {
   region = "eu-west-1"
