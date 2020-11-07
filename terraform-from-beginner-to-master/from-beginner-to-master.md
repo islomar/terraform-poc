@@ -90,13 +90,40 @@
 * Use it like `var.<variableIdentifier>`
 * When destroying a resource which includes a variable, Terraform will ask you for a value for the variable again, it doesn't actually matter what value you give it this time as the variable is not needed for Terraform to destroy the bucket.
 
+#### How to set variables
+* Variables can have default values.
+* To set a variable on the command line: `terraform apply -var <variableIdentifier>=<variableValue>`
+* Another way: using an environment variable with the convention `TF_VAR_<variable_identifier>`
+* You can declare your variables inside a `terraform.tfvar` file, as `<name> = <value>`
+* Variables will be read from any file ending with `.auto.tfvars`
+* Using a map: `variables_example_04`, e.g. to set different instance types for dev, test or prod environments.
+* You can/should specify the type of a variable: it shows an error if you define a non acceptable value (e.g. "pepito" for a bool)
+    * the following values will be valid true , false , "true" ,  "false" , "1" (evaluated to true), "0" (evaluated to false)
+    * With a number any valid number will be allowed with or without quotes.
+    * complex types: list, set, map, object, tuple.
+    * simple types: bool, string, number
+    * An object is a structure that you can define from the other types
+    * It exists the `any` type: it is calculated in runtime.
+    
 ## Chapter 11 - Project Layout
-
-TBD
+* We can split the code over as many files as we wish: Terraform combines all of the code.
+* Rule: all of the files have to be in the same folder.
+* Some conventions:
+    * Providers are setup in a file `main.tf`
+    * Files are broken up around different areas of the system, e.g. `ecs.tf`, `s3.tf`, `dns.tf` (for route53), etc.
 
 ## Chapter 12 - Modules
 
-TBD
+* We use folders to create modules.
+* See `modules_example_0x`
+* A module can take arguments.
+* Return values in a module can be used in the main Terraform project.
+* It is possible to return a whole resource from a module.
+* Modules can themselves use modules inside them: `modules_example_03`.
+* **Remote modules**
+    * To reuse blocks of configuration across a company or with other people.
+    * https://github.com/kevholditch/terraform-beginner-to-master-examples/blob/master/modules_example_04/main.tf
+    * We can use GitHub for its publication. Example: github.com/kevholditch/sqs-with-backoff. Better pinning the version, e.g. with a git tag: github.com/kevholditch/sqs-with-backoff?ref=0.0.1
 
 ## Chapter 13 - Plans
 
@@ -112,11 +139,11 @@ TBD
 
 ## General
 * since Terraform 0.12> we can now omit the ${ and }
-
+* Doubt: prevalence order for variable definitions?
 
 ## Bookmark
 
-Page 33/90
+Page 60/90
 
 ## Notes for Kevin
 
