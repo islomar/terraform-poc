@@ -161,6 +161,30 @@ https://www.terraform.io/intro/examples/index.html
 
 - `curl -X GET --header 'Accept: application/vnd.pagerduty+json;version=2' --header 'Authorization: Token token=<PAGERDUTY_TOKEN>' 'https://api.pagerduty.com/users' | | jq '.users[] | select(.id == "PPXHE9Z")'`
 
+## How to deal with different environments: development, staging, production
+
+- https://www.terraform.io/docs/cloud/guides/recommended-practices/part1.html#the-recommended-terraform-workspace-structure
+- https://learn.hashicorp.com/tutorials/terraform/organize-configuration?in=terraform/modules
+- There are several ways to do it:
+  - A list `environments` which applies in a loop whatever.
+  - Different folders `staging`, `production`
+    - Drawback:
+      - duplication
+      - staging and production could differ
+    - Advantage:
+      - more clear separation and more difficult to apply changes to the wrong environment.
+      - you could create something only for staging.
+  - Use workspaces:
+    - Workspace-separated environments use the same Terraform code but have different state files, which is useful if you want your environments to stay as similar to each other as possible, for example if you are providing development infrastructure to a team that wants to simulate running in production.
+- https://codurance.com/2020/04/28/terraform-with-multiple-environments/
+- https://medium.com/capital-one-tech/deploying-multiple-environments-with-terraform-kubernetes-7b7f389e622
+  - It also shows "feature toggles".
+
 ## Recommended practices
 
 - https://www.terraform.io/docs/cloud/guides/recommended-practices/part1.html
+
+## TO DO
+
+- Try Terraform Cloud: https://learn.hashicorp.com/tutorials/terraform/cloud-sign-up?slug=terraform&slug=cloud-sign-up
+- https://blog.gruntwork.io/a-comprehensive-guide-to-managing-secrets-in-your-terraform-code-1d586955ace1
