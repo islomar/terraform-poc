@@ -185,20 +185,35 @@
     - Enable server-side encryption?
           
 ## Chapter 15 - Workspaces
-
-TBD
+- `workspaces_example_01`
+- Variable `terraform.workspace`
+- A workspace in Terraform is a way of creating many instances of a set of Terraform code using a single project
+- All TF projects run in a workspace, e.g. `default`
+- The `default` workspace can not be delted.
+- `terraform workspace list` to list all the available workspaces in this project.
+- `terraform workspace new dev`: to create a new workspace.
+    - The dev workspace is in a file at the path `./terraform.tfstate.d/dev/terraform.tfstate`
+- `terraform workspace select default`: to go back to the default workspace
+- You can think of this like two Terraform projects in two separate folders that happen to be sharing the same code.
+- Under the covers the workspace switching works by Terraform keeping multiple copies of the state.
+- Under the bonnet Terraform uses a special marker file at the path `.terraform/environment` to store which workspace you are currently using. Note do not rely on this fact as it is an internal detail and subject to change.
+- `terraform workspace delete dev`
+- You can use the workspace name to drive different values for variables that make up your infrastructure. However, the amount that you can drive just from the workspace alone does not scale well. You really need to have a way to change your input variables at the top-level. This problem is solved by Terraform’s managed offering Terraform Cloud or Terraform Enterprise: https://www.terraform.io/docs/cloud/index.html
 
 ## Chapter 16 - Provisioners
 
-TBD
+- A provisioner in Terraform is a way to run a script either remotely or locally **after** a resource has been created.
+- They were added by Hashicorp to Terraform to allow for certain scenarios that are not natively supported by the provider you are using. 
+- Hashicorp recommend that they are a last resort, since provisioners are imperative and so TF has no way of knowing how to apply a change.
+- Examples: https://github.com/kevholditch/terraform-beginner-to-master-examples/blob/master/provisioners_example_01/README.md
+- How to avoid using the provisioner? AWS have a built in way to run a script upon new machine start (most cloud providers do). To do this set the script as the `user_data` on the machine.
+
+### Null Resources
+- A `null_resource` is a special no op resource that creates nothing. It is a dummy resource that allows you to attach a provisioner to it. This resource should be avoided unless absolutely necessary.
 
 ## General
 * since Terraform 0.12> we can now omit the ${ and }
 * Doubt: prevalence order for variable definitions?
-
-## Bookmark
-
-Page 73/90
 
 ## Notes for Kevin
 
