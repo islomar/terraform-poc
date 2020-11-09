@@ -84,13 +84,13 @@
 * The template file would be `*.tpl`
 * You can also create loops in a template
 
-### Variables
+## Chatper 10: Variables
 * A Variable in Terraform is something which can be set at runtime. It allows you to vary what Terraform will do by passing in or using a dynamic value.
 * When needed, you can provide a description for the variable
 * Use it like `var.<variableIdentifier>`
 * When destroying a resource which includes a variable, Terraform will ask you for a value for the variable again, it doesn't actually matter what value you give it this time as the variable is not needed for Terraform to destroy the bucket.
 
-#### How to set variables
+### How to set variables
 * Variables can have default values.
 * To set a variable on the command line: `terraform apply -var <variableIdentifier>=<variableValue>`
 * Another way: using an environment variable with the convention `TF_VAR_<variable_identifier>`
@@ -127,9 +127,64 @@
 
 ## Chapter 13 - Plans
 
-TBD
+- A plan is Terraform showing you how it needs to change the world to get it into the desired state specified in your code.
+- The resource marked with `∼` means the resource will be updated in place.
+- destroy then creates are potentially dangerous as it means your resource may not be available for a period of time, so this type of change should applied with caution.
+- As
+  what Terraform will do is first destroy the old queue and only once the queue is destroyed will it then create the new one. If you want Terraform to create the new queue before deleting the old one then this is possible using a resource lifecycle which will be covered in a later chapter.
+    - PARALLEL CHABGES FTW!!: As a small aside if you want to change the name of an SQS queue then a better technique would be to create a new SQS queue in one release so both queues exist side by side, then switch your application over to using the new queue. Then do another Terraform release to delete the original queue.
+- When reviewing a plan a good mindset to get into is to think about the changes you have made to your Terraform code and see if the plan matches what you are expecting. Start with the summary and see if you are seeing roughly the right amount of adds, updates and destroys and then work up from there.
+- `terraform plan -out myplan`
+- Being able to separate out the plan and apply phase enables you to write your own build deploy pipelines by having the plan as a step and then passing that plan file onto the apply step. This gives you the option to pause if you want and allow a human operator to check the plan before you pass it to be applied.
+- **VERY IMPORTANT**: The difference is that when you pass a plan to the apply command, the apply command will execute that exact plan. So if something has changed in your infrastructure and that plan is no longer possible then Terraform will error and tell you. It is a safe guard where you are explicitly saying to Terraform, go and execute exactly this plan.
+- Auto apply: It is possible to skip the confirmation where Terraform pauses during the apply phase a different way, you can use the -auto-approve flag
+    - NOT RECOMMENDED in most scenarios.
 
 ## Chapter 14 - State
+- State is Terraform’s store of all of the resources it has created. State stores all of the information about the resources, including meta information that cannot be retrieved from the underlying infrastructure APIs.
+- It also stores the dependency order of the resources that it created.
+- Terraform uses its state to work out how it needs to make changes. By default Terraform stores state in a local file called terraform.tfstate .
+- why does Terraform need to record the resources it has created in a state file, why can’t it just look at the HCL code and compare that to the real world and apply the changes?
+    - Some resources that you create have **write once values**, once they are written there is no way to retrieve them again (and check if they changed). E.g. passwords.
+    - The state file is also needed by Terraform **for deleting resources**.
+        - A simple example of this is that if
+          you had a AWS subnet and an EC2 instance in that subnet and you deleted both of them from your project. Firstly Terraform needs to know that it created those resources in the first place. Terraform    cannot assume that anything in AWS that is not in your HCL code was something that it created that can now be deleted.
+    - Terraform can then use the dependency order in its state file to delete the resources in the correct order. The only other way to solve this problem without a state file would be for Terraform to know the dependency order of all resource types. This quickly explodes to a point where it becomes almost impossible to maintain, plus it doesn’t scale. Terraform uses state to elegantly solve the dependency problem.
+- By default Terraform uses a combination of its state and the underlying infrastructure APIs to build a plan of how to make changes to get the world to how you have specified it in your HCL code. When
+  projects reach a certain size and due to rate limits imposed on some APIs it can become impractical to interrogate them on every Terraform run. In this situation you can pass in a flag to Terraform to
+  tell it just to use its state as the source of truth. This greatly speeds up the Terraform run time and gets round this problem. The downside being that if someone modifies the underlying infrastructure
+  outside of Terraform then the Terraform run could fail as it will be unaware of these changes.          
+
+### Manipulating state
+- `terraform state list`: it shows which resources are in its state file.
+- Import existing infrastructure that was created by hand into Terraform.
+    - `terraform import <resource_type>.<resource_name> <value>`
+    - It depends on each provider.
+    - `state_example_01`
+- Move resources from on TF project A to another B.
+    - `state_example_02`
+    - By hand:
+        - First, from A `terraform state rm <resource_id>`
+        - Then, remove the resource declaration from the .tf file in A.
+        - `terraform apply` from A.
+        - Import resource in state for B (existing the .tf file as well)
+        - `terraform apply` from B
+    - Another way to move it is using `terraform state mv -state-out=../state_example_02a/terraform.tfstate aws_vpc.main aws_vpc.my_vpc`
+        - `terraform state mv -state-out=<destination_tfstate> <origin_resource_id> <destination_resource_id>`
+        - This works even with resources which do not support an import.
+- Correct TF if someone goes and manually changes infrastructure behind TF's back where there is no way for Terraform to automatically know how to resolve that situation.
+     
+### Remote state
+- `state_example_03`
+- By convention, we put it on a file called `state.tf`
+- Create a bucket in S3
+    - Turn on bucket versioning
+    - It automatically locks the file for multiple accesses.
+- Declare the state.tf
+- Doubts
+    - Enable server-side encryption?
+          
+## Chapter 15 - Workspaces
 
 TBD
 
@@ -143,7 +198,7 @@ TBD
 
 ## Bookmark
 
-Page 60/90
+Page 73/90
 
 ## Notes for Kevin
 
@@ -156,5 +211,11 @@ Page 60/90
 - Page 12:
   - typo `lets` instead of `let's`
   - List of actions instead of a block of text with mixed commands and text in it.
-- Page 33: the text for the "Chapter 10" does not have the right font size and style. 
-- Examples are GREAT.
+- Page 33: the text for the "Chapter 10 - Variables" does not have the right font size and style. 
+- Page 68: typo `sovle` instead of `solve`
+- Page 68: better structure the reasons for existing of the state file as a list.
+- Remote state
+    - What about encryption? (passwords)
+    - People would need the AWS credentials locally.
+- Examples in GitHub are GREAT.
+- It goes beyond the obvious, e.g. explaining why TF needs the state file. 
