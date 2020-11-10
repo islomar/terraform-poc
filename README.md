@@ -108,8 +108,7 @@
 - It supports an even stronger locking concept that can also detect attempts to create a new plan when an existing plan is already awaiting approval, by queuing Terraform operations in a central location. This allows teams to more easily coordinate and communicate about changes to infrastructure.
 - To collaborate with your colleagues in TFE, you'll all need access to the same TFE organization. You can add users to an organization by creating a team and adding users to it.
 - Team membership is how TFE controls access to workspaces.
-- **Workspaces** are how TFE organizes infrastructure. If you've used the legacy version of TFE,
-  workspaces used to be called environments.
+- **Workspaces** are how TFE organizes infrastructure. If you've used the legacy version of TFE, workspaces used to be called environments.
   - https://codurance.com/2020/04/28/terraform-with-multiple-environments/
   - https://www.terraform.io/docs/state/workspaces.html
   - https://www.terraform.io/docs/cloud/guides/recommended-practices/part1.html
@@ -183,6 +182,11 @@ https://www.terraform.io/intro/examples/index.html
 ## Recommended practices
 
 - https://www.terraform.io/docs/cloud/guides/recommended-practices/part1.html
+  - Table 1.1. with a comparison to Ansible, Puppet.
+
+## Interesting links
+
+- https://livebook.manning.com/book/terraform-in-action/chapter-1/v-10/24
 
 ## TO DO
 
