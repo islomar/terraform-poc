@@ -1,5 +1,6 @@
 # Study Guide - Terraform Associate Certification
 
+- https://medium.com/swlh/my-journey-to-hashicorp-certified-terraform-associate-f91f397a01e0
 - https://www.hashicorp.com/certification/terraform-associate/
 - https://learn.hashicorp.com/tutorials/terraform/associate-study
   - This guide lists resources you should study if you are preparing for the Terraform Associate Certification exam from scratch.
