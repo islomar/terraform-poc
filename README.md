@@ -3,6 +3,7 @@
 - hhtps://www.terraform.io/intro/index.html
 - https://blog.gruntwork.io/a-comprehensive-guide-to-terraform-b3d32832baca
   - https://github.com/gruntwork-io/intro-to-terraform
+- https://hashicorp.github.io/field-workshops-terraform/slides/aws/terraform-oss/#1
 
 ## How to use multiple AWS accounts from the command line: profiles
 
