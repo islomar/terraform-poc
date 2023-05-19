@@ -188,6 +188,7 @@ https://www.terraform.io/intro/examples/index.html
 ## Interesting links
 
 - https://livebook.manning.com/book/terraform-in-action/chapter-1/v-10/24
+- https://jessitron.com/2023/04/21/setting-up-alb-access-logs-in-eks-using-terraform/
 
 ## TO DO
 
