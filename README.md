@@ -190,6 +190,7 @@ https://www.terraform.io/intro/examples/index.html
 - https://livebook.manning.com/book/terraform-in-action/chapter-1/v-10/24
 - https://jessitron.com/2023/04/21/setting-up-alb-access-logs-in-eks-using-terraform/
 - https://towardsaws.com/terraform-deploy-a-two-tier-architecture-with-aws-configuring-a-ci-cd-pipeline-on-terraform-cloud-b46d3150d6e3
+- [The Must-Know Terraform Interview Questions](https://devopsknowledge.hashnode.dev/the-must-know-terraform-interview-questions)
 
 ## TO DO
 
